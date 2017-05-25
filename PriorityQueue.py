@@ -30,7 +30,6 @@ class PriorityQueue:
 
     def pop(self):
         """Removes the minimum element in the queue.
-
         Returns:
             The value of the removed element.
         """
@@ -48,17 +47,17 @@ class PriorityQueue:
     def _find_min(self):
         # Computes the index of the minimum element in the queue.
         #
-        # This method may crash if called when the queue is empty.
+        # This method may crash if called when the queue is empty. <- Lol
         return 0
 
     def build_min_heap(self,index):
-        if(index == 0 or self.queue[index] >= self.queue[index / 2]):
+        if(index == 0 or self.queue[index] >= self.queue[index // 2]):
             return
         else:
             temp = self.queue[index]
-            self.queue[index] = self.queue[index / 2]
-            self.queue[index / 2] = temp
-            self.build_min_heap( index / 2)
+            self.queue[index] = self.queue[index // 2]
+            self.queue[index // 2] = temp
+            self.build_min_heap( index // 2)
 
     def min_heapify(self,index):
         if(index >= len(self.queue)):
@@ -80,3 +79,6 @@ class PriorityQueue:
             return 1
         else:
             return i * 21
+
+    def reheap(self):
+        self.build_min_heap(len(self.queue) - 1)
